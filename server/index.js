@@ -36,18 +36,18 @@ app.post('/', jsonParser, async (req, res) => {
           450
         ); // prints 'Hello world!' on an image, middle and center-aligned, when x = 0 and y = 0
    
-        image.print(
-          font,
-          20,
-          20,
-          {
-            text: data.text2,
-            alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
-            alignmentY: Jimp.VERTICAL_ALIGN_MIDDLE
-          },
-          600,
-          450
-    ); // prints 'Hello world!' on an image, middle and center-aligned, when x = 0 and y = 0
+    //     image.print(
+    //       font,
+    //       20,
+    //       20,
+    //       {
+    //         text: data.text2,
+    //         alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
+    //         alignmentY: Jimp.VERTICAL_ALIGN_MIDDLE
+    //       },
+    //       600,
+    //       450
+    // ); 
     // this will combine two images in one
      image.composite(photo,500,70)
    // Writing image after processing
@@ -55,7 +55,7 @@ app.post('/', jsonParser, async (req, res) => {
 
 
     console.log("Image is processed succesfully");
-    res.sendFile('C:/Users/harsh/Desktop/Programs/Node_Workspace/new/resources/textOverlay.png')
+    res.sendFile('C:/Users/harsh/Desktop/Programs/Node_Workspace/new/server/resources/textOverlay.png')
 })
 // async function textOverlay() {
 //    // Reading image
