@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import axios from 'axios';
 
+
 import { Formik, Form, Field } from "formik";
 function Home() {
 
@@ -8,21 +9,33 @@ function Home() {
       text:""
         
       };
-
+  
 
     const [image, setimage] = useState('');
     const onSubmit = (data) => {
         console.log(data)
-        axios.post("http://localhost:3001", data).then((response) => {
-          console.log("IT WORKED");
-            console.log(response.data)
-            setimage(response.data)
-        });
+      axios.post("http://localhost:3001", data, { responseType:'blob'}).then((res) => {
+      var binaryData = [];
+      binaryData.push(res.data);
+     const url= URL.createObjectURL(new Blob(binaryData, {type: "image"}))
+        // const url = URL.createObjectURL(res.data);
+        console.log("This is url ", url)
+        console.log("This is response ",res.data)
+        setimage(url)
+      }).catch(err => {
+        console.log(err)
+      })
+        // .then((blob) => {
+        // const imageObjectUrl = URL.createObjectURL(blob);
+        // setimage(imageObjectUrl)
+      // });
+      
+      
       };
   return (
-      <div>
-          <Formik initialValues={initialValues} onSubmit={onSubmit} >
-        <Form>
+      <div className='w-1/3 flex flex-col justify-center mx-auto my-24 space-y-4'>
+          <Formik initialValues={initialValues} onSubmit={onSubmit}  >
+        <Form className='space-y-4'>
               
                 
                 <Field type="text" id="inputCreatePost" className="focus:outline-none focus:ring-offset-0 text-white placeholder-gray-200 text-sm rounded-lg  block w-full p-2.5 bg-gradient-to-r from-indigo-700 via-purple-700 to-pink-700" placeholder="" name="text" />
@@ -40,7 +53,7 @@ function Home() {
 
           <div>This is the response
           
-          <img src={image.toString()}></img>
+          <img src={image}></img>
           </div>
     </div>
   )
