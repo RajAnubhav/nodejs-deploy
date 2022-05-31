@@ -53,7 +53,8 @@ function Home() {
 
           <div>This is the response
           
-          <img src={image}></img>
+        <img src={image}></img>
+        <a href={image} download className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 rounded-lg text-white active:bg-gradient-to-r-from-indigo-200-via-purple-200-to-pink-200  font-bold uppercase text-sm px-6 py-2  shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">download</a>
           </div>
     </div>
   )
