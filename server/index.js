@@ -4,6 +4,7 @@ const app = express();
 const bodyParser = require('body-parser')
 const jsonParser = bodyParser.json();// parsing the json object to it
 const cors = require('cors')
+const path=require('path')
 app.use(cors());//so that we can make api request to our own localhost
 app.listen(3001, (req, res) => {
     console.log("App is runnign on port 3001")
@@ -55,7 +56,8 @@ app.post('/', jsonParser, async (req, res) => {
 
 
     console.log("Image is processed succesfully");
-    res.sendFile('C:/Users/harsh/Desktop/Programs/Node_Workspace/new/server/resources/textOverlay.png')
+    // res.sendFile('C:/Users/harsh/Desktop/Programs/Node_Workspace/new/server/resources/textOverlay.png')
+    res.sendFile(path.join(__dirname+'/resources/textOverlay.png'))
 })
 // async function textOverlay() {
 //    // Reading image
